@@ -1,6 +1,8 @@
 # DeepSite Locally 🚀
 
-Run **DeepSite** on your own environment, without depending on Hugging Face!  
+![Banner Screenshot](./localconfig.png)
+
+Run **DeepSite** on your own environment, without depending on Hugging Face!
 Perfect for those who want to customize, integrate, or simply have full control over the platform.
 
 ---
