@@ -1,19 +1,40 @@
----
-title: DeepSite
-emoji: 🐳
-colorFrom: blue
-colorTo: blue
-sdk: docker
-pinned: true
-app_port: 5173
-license: mit
-short_description: Generate any application with DeepSeek
-models:
-  - deepseek-ai/DeepSeek-V3-0324
+# DeepSite Locally 🚀
+
+Run **DeepSite** on your own environment, without depending on Hugging Face!  
+Perfect for those who want to customize, integrate, or simply have full control over the platform.
+
 ---
 
-# DeepSite 🐳
-DeepSite is a coding platform powered by DeepSeek AI, designed to make coding smarter and more efficient. Tailored for developers, data scientists, and AI engineers, it integrates generative AI into your coding projects to enhance creativity and productivity.
+## How to run it locally 🔥
 
-## How to use it locally
-Follow [this discussion](https://huggingface.co/spaces/enzostvs/deepsite/discussions/74)
+### 1. Clone the repository
+```bash
+git clone https://github.com/MartinsMessias/deepsite-locally.git
+```
+
+### 2. Install dependencies
+(Make sure you have **Node.js** installed)
+```bash
+npm install
+```
+
+### 3. Set up your environment
+
+Create a `.env` file in the project root and add your **HF_TOKEN**:
+
+```
+HF_TOKEN=your-token-here
+```
+> The token must have **inference** permissions (and **write** permissions if you want to deploy results to Hugging Face Spaces).
+
+### 4. Build the project
+```bash
+npm run build
+```
+
+### 5. Start the server
+```bash
+npm run start
+```
+
+
