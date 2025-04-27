@@ -7,7 +7,7 @@ Perfect for those who want to customize, integrate, or simply have full control 
 
 ---
 
-## How to run it locally 🔥
+## How to Run DeepSite Locally
 
 ### 1. Clone the repository
 ```bash
@@ -39,4 +39,6 @@ npm run build
 npm run start
 ```
 
+### keywords
+deepsite local hosting, deepsite run locally, deepsite self-hosted, how to run deepsite locally, install deepsite on your machine, deepsite local server setup, deepsite offline mode, deepsite localhost tutorial, deploy deepsite on your own server, deepsite self-install guide, how to host deepsite on localhost step-by-step, can deepsite run offline on my computer, deepsite docker installation guide, full guide to running deepsite locally without internet, deepsite self-host vs cloud hosting comparison, deepsite performance tips when running locally, requirements to run deepsite on local environment, best practices for self-hosting deepsite platform, how to speed up deepsite in a local environment, common errors when running deepsite locally and how to fix, deepsite vs other ai site builders local run comparison, top reasons to run deepsite on your own server, is deepsite open-source and local-friendly
 
