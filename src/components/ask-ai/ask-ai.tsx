@@ -12,7 +12,6 @@ import { defaultHTML } from "./../../../utils/consts";
 import SuccessSound from "./../../assets/success.mp3";
 import Settings from "../settings/settings";
 import ProModal from "../pro-modal/pro-modal";
-// import SpeechPrompt from "../speech-prompt/speech-prompt";
 
 function AskAI({
   html,
@@ -42,9 +41,12 @@ function AskAI({
   const [localSettings, setLocalSettings] = useState(() => {
     const saved = localStorage.getItem('localSettings');
     return saved ? JSON.parse(saved) : {
-      apiKey: process.env.LOCAL_API_KEY || "",
-      apiUrl: process.env.LOCAL_API_URL || "http://localhost:11434/v1",
-      model: process.env.LOCAL_MODEL || "gemma3:1b"
+      apiKey: "",
+      apiUrl: "http://localhost:11434/v1",
+      model: "gemma3:1b",
+      openRouterApiKey: "<OPENROUTER_API_KEY>",
+      openRouterApiUrl: "https://openrouter.ai/api/v1",
+      openRouterModel: "deepseek/deepseek-chat-v3-0324:free",
     };
   });
 
@@ -55,9 +57,12 @@ function AskAI({
       setLocalSettings(parsed);
     } else {
       setLocalSettings({
-        apiKey: process.env.LOCAL_API_KEY || "",
-        apiUrl: process.env.LOCAL_API_URL || "http://localhost:11434/v1",
-        model: process.env.LOCAL_MODEL || "gemma3:1b"
+        apiKey: "",
+        apiUrl: "http://localhost:11434/v1",
+        model: "gemma3:1b",
+        openRouterApiKey: "<OPENROUTER_API_KEY>",
+        openRouterApiUrl: "https://openrouter.ai/api/v1",
+        openRouterModel: "deepseek/deepseek-chat-v3-0324:free",
       });
     }
   };
@@ -85,11 +90,18 @@ function AskAI({
           provider,
           ...(provider === "local"
             ? {
-                localApiKey: localSettings.apiKey,
-                localApiUrl: localSettings.apiUrl,
-                localModel: localSettings.model,
+                ApiKey: localSettings.apiKey,
+                ApiUrl: localSettings.apiUrl,
+                Model: localSettings.model,
               }
             : {}),
+            ...(provider === "openrouter"
+              ? {
+                  ApiKey: localSettings.openRouterApiKey,
+                  ApiUrl: localSettings.openRouterApiUrl,
+                  Model: localSettings.openRouterModel,
+                }
+              : {}),
           ...(html === defaultHTML ? {} : { html }),
           ...(previousPrompt ? { previousPrompt } : {}),
         }),

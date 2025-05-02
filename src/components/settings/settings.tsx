@@ -68,16 +68,6 @@ function Settings({
         <main className="px-4 pt-3 pb-4 space-y-4">
           {/* toggle using tailwind css */}
           <div>
-            <a
-              href="https://huggingface.co/spaces/enzostvs/deepsite/discussions/74"
-              target="_blank"
-              className="w-full flex items-center justify-between text-gray-600 bg-gray-50 border border-gray-100 px-2 py-2 rounded-lg mb-3 text-sm font-medium hover:brightness-95"
-            >
-              How to use it locally?
-              <button className="bg-black text-white rounded-md px-3 py-1.5 text-xs font-semibold cursor-pointer">
-                See the guide
-              </button>
-            </a>
             <div className="flex items-center justify-between">
               <p className="text-gray-800 text-sm font-medium flex items-center justify-between">
                 Use auto-provider
@@ -185,6 +175,62 @@ function Settings({
                   value={localSettings.model || "gemma3:1b"}
                   onChange={(e) => {
                     setLocalSettings({ ...localSettings, model: e.target.value });
+                  }}
+                  className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </label>
+            </div>
+          )}
+          {provider === "openrouter" && (
+            <div className="space-y-2">
+              <p className="text-gray-800 text-sm font-medium mb-2">
+                Get your OpenRouter API key from
+                <a
+                  href="https://openrouter.ai/
+                  "
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500"
+                >
+                  here
+                </a>
+              </p>
+              <hr className="text-gray-800 text-sm font-medium mb-2" />
+              <label className="block">
+                <p className="text-gray-800 text-sm font-medium mb-1">
+                  API Key
+                </p>
+                <input
+                  type="text"
+                  value={localSettings.openRouterApiKey}
+                  onChange={(e) => {
+                    setLocalSettings({ ...localSettings, openRouterApiKey: e.target.value });
+                  }}
+                  className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </label>
+              <label className="block">
+                <p className="text-gray-800 text-sm font-medium mb-1">
+                  Base URL
+                </p>
+                <input
+                  type="text"
+                  value={localSettings.openRouterApiUrl || "https://openrouter.ai/api/v1"}
+                  onChange={(e) => {
+                    setLocalSettings({ ...localSettings, openRouterApiUrl: e.target.value });
+                  }}
+                  className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </label>
+              <label className="block">
+                <p className="text-gray-800 text-sm font-medium mb-1">
+                  Model
+                </p>
+                <input
+                  type="text"
+                  value={localSettings.openRouterModel || "deepseek/deepseek-chat-v3-0324:free"}
+                  onChange={(e) => {
+                    setLocalSettings({ ...localSettings, openRouterModel: e.target.value });
                   }}
                   className="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />

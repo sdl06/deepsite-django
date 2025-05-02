@@ -1,4 +1,5 @@
-import Deepseek from "./../../assets/deepseek-color.svg";
+import { FaGithub } from "react-icons/fa";
+import Deepseek from "./../../assets/logo.svg";
 
 function Tabs({ children }: { children?: React.ReactNode }) {
   return (
@@ -14,11 +15,23 @@ function Tabs({ children }: { children?: React.ReactNode }) {
       </div>
       <div className="flex items-center justify-end gap-3">
         <a
-          href="https://huggingface.co/deepseek-ai/DeepSeek-V3-0324"
+          href="https://huggingface.co/spaces/enzostvs/deepsite"
           target="_blank"
           className="text-[12px] text-gray-300 hover:brightness-120 flex items-center gap-1 font-code"
         >
-          Powered by <img src={Deepseek} className="size-5" /> Deepseek
+          <img src={Deepseek} className="size-5" /> DeepSite
+        </a>
+        <span
+          className="text-[12px] text-gray-300 flex items-center gap-1 font-code"
+        >
+          enhanced by
+        </span>
+        <a
+          href="https://github.com/MartinsMessias"
+          target="_blank"
+          className="text-[12px] text-gray-300 hover:brightness-120 flex items-center gap-1 font-code"
+        >
+          <FaGithub/> MartinsMessias
         </a>
         {children}
       </div>

@@ -20,21 +20,12 @@ git clone https://github.com/MartinsMessias/deepsite-locally.git
 npm install
 ```
 
-### 3. Set up your environment
-
-Create a `.env` file in the project root and add your **HF_TOKEN**:
-
-```
-HF_TOKEN=your-token-here
-```
-> The token must have **inference** permissions (and **write** permissions if you want to deploy results to Hugging Face Spaces).
-
-### 4. Build the project
+### 3. Build the project
 ```bash
 npm run build
 ```
 
-### 5. Start the server
+### 4. Start the server
 ```bash
 npm run start
 ```

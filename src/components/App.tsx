@@ -7,7 +7,6 @@ import {
   useUnmount,
   useEvent,
   useLocalStorage,
-  useSearchParam,
 } from "react-use";
 import { toast } from "react-toastify";
 
@@ -16,12 +15,10 @@ import DeployButton from "./deploy-button/deploy-button";
 import { defaultHTML } from "./../../utils/consts";
 import Tabs from "./tabs/tabs";
 import AskAI from "./ask-ai/ask-ai";
-import { Auth } from "./../../utils/types";
 import Preview from "./preview/preview";
 
 function App() {
   const [htmlStorage, , removeHtmlStorage] = useLocalStorage("html_content");
-  const remix = useSearchParam("remix");
 
   const preview = useRef<HTMLDivElement>(null);
   const editor = useRef<HTMLDivElement>(null);
@@ -29,41 +26,13 @@ function App() {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
   const [isResizing, setIsResizing] = useState(false);
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
   const [html, setHtml] = useState((htmlStorage as string) ?? defaultHTML);
   const [isAiWorking, setisAiWorking] = useState(false);
-  const [auth, setAuth] = useState<Auth | undefined>(undefined);
   const [currentView, setCurrentView] = useState<"editor" | "preview">(
     "editor"
   );
-  const [prompts, setPrompts] = useState<string[]>([]);
-
-  const fetchMe = async () => {
-    const res = await fetch("/api/@me");
-    if (res.ok) {
-      const data = await res.json();
-      setAuth(data);
-    } else {
-      setAuth(undefined);
-    }
-  };
-
-  const fetchRemix = async () => {
-    if (!remix) return;
-    const res = await fetch(`/api/remix/${remix}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.html) {
-        setHtml(data.html);
-        toast.success("Remix content loaded successfully.");
-      }
-    } else {
-      toast.error("Failed to load remix content.");
-    }
-    const url = new URL(window.location.href);
-    url.searchParams.delete("remix");
-    window.history.replaceState({}, document.title, url.toString());
-  };
+  const [, setPrompts] = useState<string[]>([]);
 
   /**
    * Resets the layout based on screen size
@@ -134,10 +103,6 @@ function App() {
 
   // Initialize component on mount
   useMount(() => {
-    // Fetch user data
-    fetchMe();
-    fetchRemix();
-
     // Restore content from storage if available
     if (htmlStorage) {
       removeHtmlStorage();
@@ -185,10 +150,6 @@ function App() {
       >
         <DeployButton
           html={html}
-          error={error}
-          auth={auth}
-          setHtml={setHtml}
-          prompts={prompts}
         />
       </Header>
       <main className="max-lg:flex-col flex w-full">
