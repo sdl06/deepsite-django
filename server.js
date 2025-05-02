@@ -115,18 +115,35 @@ app.post("/api/ask-ai", async (req, res) => {
         const lines = chunk.split('\n').filter(line => line.trim());
 
         for (const line of lines) {
-          try {
-            if (line.includes('[DONE]')) continue;
-            if (!line.startsWith('data: ')) continue;
+          if (!line || !line.startsWith('data: ') || line.includes('[DONE]')) continue;
 
-            const message = JSON.parse(line.replace('data: ', ''));
-            if(message.choices[0].delta.content) {
-              res.write(message.choices[0].delta.content);
+          try {
+            if (line.includes('exceeded')) {
+              return res.status(402).send({
+                ok: false,
+                message: line,
+              });
+            }
+
+            const json = line.slice(6).trim();
+
+            if (!json.startsWith('{')) {
+              continue;
+            }
+
+            const message = JSON.parse(json);
+            const content = message?.choices?.[0]?.delta?.content;
+
+            if (content) {
+              res.write(content);
             }
           } catch (e) {
-            console.error('Error parsing chunk:', e);
+            console.error('Error on line stream:', e.message);
+            // continue ao invés de throw, pra não matar tudo por causa de uma linha podre
+            continue;
           }
         }
+
       }
       res.end();
     } catch (error) {
