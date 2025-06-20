@@ -15,9 +15,10 @@ git clone https://github.com/MartinsMessias/deepsite-locally.git
 ```
 
 ### 2. Install dependencies
-(Make sure you have **Node.js** installed)
+Make sure you have **Node.js** and **Python** installed
 ```bash
 npm install
+pip install -r requirements.txt
 ```
 
 ### 3. Build the project
@@ -27,7 +28,7 @@ npm run build
 
 ### 4. Start the server
 ```bash
-npm run start
+python backend/manage.py runserver
 ```
 
 ### keywords
